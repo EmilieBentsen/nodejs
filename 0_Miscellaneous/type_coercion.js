@@ -8,3 +8,11 @@ console.log(newTotal);
 const balanceEquals = total === newTotal;
 
 console.log(balanceEquals);
+
+const cat = {
+    key: "value",
+    name: "Tom"
+}
+
+console.log(cat["name"]);
+console.log(cat.name);
