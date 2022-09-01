@@ -1,4 +1,3 @@
-{
-    "key": "value",
+const cat = {
     "name": "Tom"
 }
