@@ -1,7 +1,6 @@
 import express from "express";
 const app = express();
 
-
 app.use(express.json());
 
 let weapons = [{
@@ -52,13 +51,6 @@ app.post("/weapons", (req, res) => {
     res.send({ data: weapons});
    
 });
-
-app.delete("/weapons/:id", (req, res) => {
-    const weaponsAfterDelete = weapons.filter(weapon => weapon.id !== Number(req.params.id))
-    weapons = weaponsAfterDelete;
-    res.send({ data: weapons});
-    
-});
 app.put("/weapons/:id", (req, res) => {
     const data = req.body;
     const weaponsUpdated = weapons.map(weapon => {
@@ -94,6 +86,11 @@ app.patch("/weapons/:id", (req, res) => {
     res.send({ data: weapons});
 });
 
+app.delete("/weapons/:id", (req, res) => {
+    const weaponsAfterDelete = weapons.filter(weapon => weapon.id !== Number(req.params.id))
+    weapons = weaponsAfterDelete;
+    res.send({ data: weapons});
+});
 
 app.listen(8080, () => {
     console.log("Server is running on port", 8080)
