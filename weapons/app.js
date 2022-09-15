@@ -4,7 +4,7 @@ const app = express();
 
 app.use(express.json());
 
-let arrayOfWeapons = [{
+let weapons = [{
     id: 1,
     name: "Gun",
     damage: 8
@@ -29,15 +29,15 @@ let arrayOfWeapons = [{
     damage: 10
 }];
 
-let lastId = arrayOfWeapons.length;
+let lastId = weapons.length;
 
 app.get("/weapons", (req, res) => {
-    res.send({ data: arrayOfWeapons});
+    res.send({ data: weapons});
     
 });
 
 app.get("/weapons/:id", (req, res) => {
-    const weapon = arrayOfWeapons.find(weapon => weapon.id === Number(req.params.id))
+    const weapon = weapons.find(weapon => weapon.id === Number(req.params.id))
     if(!weapon) {
         return res.send("The weapon with the given id was not found");
     };
@@ -48,21 +48,20 @@ app.post("/weapons", (req, res) => {
     const data = req.body;
     lastId = lastId+1;
     const weapon = {id: lastId, name: data.name, damage: data.damage}
-    arrayOfWeapons.push(weapon);
-    res.send({ data: arrayOfWeapons});
+    weapons.push(weapon);
+    res.send({ data: weapons});
    
 });
 
 app.delete("/weapons/:id", (req, res) => {
-    const weapons = arrayOfWeapons.filter(weapon => weapon.id !== Number(req.params.id))
-    console.log(weapons);
-    arrayOfWeapons = weapons;
-    res.send({ data: arrayOfWeapons});
+    const weaponsAfterDelete = weapons.filter(weapon => weapon.id !== Number(req.params.id))
+    weapons = weaponsAfterDelete;
+    res.send({ data: weapons});
     
 });
 app.put("/weapons/:id", (req, res) => {
     const data = req.body;
-    const weapons = arrayOfWeapons.map(weapon => {
+    const weaponsUpdated = weapons.map(weapon => {
         if(weapon.id === Number(req.params.id)){
             weapon.name = data.name;
             weapon.damage = data.damage;
@@ -72,13 +71,13 @@ app.put("/weapons/:id", (req, res) => {
             return weapon;
         }
     });
-    arrayOfWeapons = weapons;
-    res.send({ data: arrayOfWeapons});
+    weapons = weaponsUpdated;
+    res.send({ data: weapons});
 });
 
 app.patch("/weapons/:id", (req, res) => {
     const data = req.body;
-    const weapons = arrayOfWeapons.map(weapon => {
+    const weaponsUpdated = weapons.map(weapon => {
         if(weapon.id === Number(req.params.id) & !data.damage){
             weapon.name = data.name;
             return weapon;
@@ -91,8 +90,8 @@ app.patch("/weapons/:id", (req, res) => {
             return weapon;
         }
     });
-    arrayOfWeapons = weapons;
-    res.send({ data: arrayOfWeapons});
+    weapons = weaponsUpdated;
+    res.send({ data: weapons});
 });
 
 
