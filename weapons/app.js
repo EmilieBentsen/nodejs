@@ -51,6 +51,7 @@ app.post("/weapons", (req, res) => {
     res.send({ data: weapons});
    
 });
+
 app.put("/weapons/:id", (req, res) => {
     const data = req.body;
     const weaponsUpdated = weapons.map(weapon => {
