@@ -6,7 +6,7 @@ const app = require("express")();
 //det første den tager imod er endpointet, nu vil vi implementerer en root
 //andet argument er en callback funktion der tager imod to argumenter req og res, vi laver en route
 //route       // en callback funktion
-app.get("/", (request, response) => {
+/*app.get("/", (request, response) => {
     response.send({message: "Created my first route. Check"});
 });
         //endpoint
@@ -23,9 +23,9 @@ app.get("/deers/:id", (req, res) => {
     } else {
         res.send({ errorMessage: "I dont know that deer"});
     }
-});
+});*/
 
-app.get("/actors", (req, res) => {
+/*app.get("/actors", (req, res) => {
     console.log(req.query.name);
     res.send({
         message: "Information about the actor",
@@ -35,8 +35,22 @@ app.get("/actors", (req, res) => {
 
 app.get("/cups", (req, res) => {
     res.send({ full: false })
-});
+});*/
 
+app.get("/lookunderbed", (req, res) =>
+{
+    if(req.query.flash){
+        res.send({message: "you are safe"})
+    } else {
+        res.redirect("/monsters");
+    }
+    
+    //res.send({ message: "Look under the bed"});
+})
+
+app.get("/monsters", (req, res) => {
+    res.send({message: "The scary monster"});
+})
 
 app.listen(8080, () => {
     console.log("server is runing on port", 8080);
