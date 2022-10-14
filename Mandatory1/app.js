@@ -1,8 +1,6 @@
 import express from "express";
-import { renderPage, injectData } from "./util/templateEngine.js";
+import { renderPage } from "./util/templateEngine.js";
 import fs from "fs";
-
-
 
 const app = express();
 
@@ -16,29 +14,128 @@ const frontpagePage = renderPage("/frontpage/frontpage.html",
     content: "",
     title: "",
     subject: "",
+    logout: ""
+});
+
+const loginPage = renderPage("/login/login.html", {
+    tabTitle: "Login page",
+    cssLink: `<link rel="stylesheet" href="/pages/frontpage/frontpage.css">`,
+    content: "",
+    title: "",
+    subject: "",
+    logout: ""
 });
 
 let files = [];
-
 let newfile = true;
-let user = {
-    username: "Admin",
-    password: "SecretPassword123",
-    loggedIn: false
-}
+
 
 app.get("/", (req, res) => {
-  
-
-    res.send(frontpagePage);
     
- 
+    fs.readFile("./user/user.json", "utf8", (err, jsonString) => {
+        if (err) {
+          console.log("File read failed:", err);
+          return;
+        }
+        console.log("File data:", jsonString);
+        const user = JSON.parse(jsonString);
+
+        if (user.loggedIn){
+            res.send(frontpagePage);
+            console.log("logged in");
+        } else {
+            res.send(loginPage);
+        }
+      });
+      
+    
+
+
 });
 
+app.post('/', (req, res) => {
+    const { message } = req.body;
+    const { title } = req.body;
+    const { subject } = req.body;
+    
+    fs.writeFile(`public/pages/contribute/${subject}.html`,renderPage("/template/template.html", 
+    { 
+        tabTitle: subject, 
+        cssLink: `<link rel="stylesheet" href="/pages/frontpage/frontpage.css">`, 
+        content: message,
+        subject: subject,
+        title: title,
+        logout: ""
+    }), (error) => {if(error){return error}});
 
+    newfile = true;
+    user.loggedIn = true;
+    res.redirect("/");
+});
+
+app.get("/logout", (req, res) => {
+    const userFalse = {
+        "username": "Admin",
+        "password": "1234",
+        "loggedIn": false
+    }
+    const jsonString = JSON.stringify(userFalse)
+    fs.writeFile('./user/user.json', jsonString, err => {
+    if (err) {
+        console.log('Error writing file', err)
+    } else {
+        console.log('Successfully wrote file')
+        res.redirect("/");
+    }
+    })
+    
+
+
+
+});
+
+app.post("/login", (req, res) =>{
+    const { username } = req.body;
+    const { password } = req.body;
+
+    const userTrue = {
+        "username": "Admin",
+        "password": "1234",
+        "loggedIn": true
+    }
+
+    fs.readFile("./user/user.json", "utf8", (err, jsonString) => {
+        if (err) {
+          console.log("File read failed:", err);
+          return;
+        }
+        console.log("File data:", jsonString);
+        const user = JSON.parse(jsonString);
+
+        if(username === user.username && password === user.password){
+
+            const jsonString = JSON.stringify(userTrue)
+            fs.writeFile('./user/user.json', jsonString, err => {
+            if (err) {
+                console.log('Error writing file', err)
+            } else {
+                console.log('Successfully wrote file')
+            }
+            })
+    
+            res.redirect("/");
+        } else {
+            res.redirect("/");
+        }
+        
+      });
+
+
+
+});
 
 app.get("/api", (req, res) => {
-    
+
     if(newfile){
         const filesupdated = [];
         const dir = './public/pages/contribute'
@@ -47,7 +144,6 @@ app.get("/api", (req, res) => {
         for (let file of filesDir) {
             const jsonFile = file;
             filesupdated.push(jsonFile);
-        console.log(file)
         } 
         files = filesupdated;
         newfile = false;
@@ -55,56 +151,6 @@ app.get("/api", (req, res) => {
     res.json(files);
 
 });
-
-/*app.get("contribute/:id", (req, res) =>{
-
-    res.send(renderPage(req.params.id, {
-        tabTitle: "New Site", 
-        cssLink: `<link rel="stylesheet" href="/pages/frontpage/frontpage.css">` 
-    }))
-})*/
-
-/*app.get("/api/content", (req, res ) => {
-
-    res.json(posts);
-    
-    console.log("test");
-});*/
-
-/*app.get("/contribute/post", (req, res) => {
-    res.send(req.params.id)
-})*/
-
-
-app.post('/', (req, res) => {
-    const { message } = req.body
-    const { title } = req.body
-    const { subject } = req.body
-    console.log(message + title);
-    posts.push({title: title, message: message})
-    if(!message){
-        return res.status(400).send({ status: "failed"});
-    }
-    fs.writeFile(`public/pages/contribute/${subject}.html`,renderPage("/template/template.html", 
-    { 
-        tabTitle: subject, 
-        cssLink: `<link rel="stylesheet" href="/pages/frontpage/frontpage.css">`, 
-        content: message,
-        subject: subject,
-        title: title
-    }), (error) => {if(error){return error}});
-    res.status(200).send({ status: "received"});
-    newfile = true;
-
-
-});
-
-app.post('/upload', (req, res) =>{
-
-
-    res.sendStatus(200);
-})
-
 
 const PORT = process.env.PORT || 8080;
 

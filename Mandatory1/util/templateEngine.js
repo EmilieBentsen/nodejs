@@ -7,13 +7,15 @@ export function renderPage(path, options = {}) {
     const page = fs.readFileSync("./public/pages"+path).toString();
 
     return navComponent
-        .replace("%%TAB_TITLE%%", options.tabTitle || "Pokemon")
+        .replace("%%TAB_TITLE%%", options.subject)
         .replace("%%PAGE_CSS_LINK%%",
             options.cssLink || ""
         ) 
         .replace("%%CONTENT%%", options.content)
         .replace("%%TITLE%%", options.title)
         .replace("%%SUBJECT%%", options.subject)
+        .replace("%%LOGOUT%%", options.logout)
+
 
 
         + page
@@ -31,10 +33,3 @@ export const content = [
         text: "Dette er den anden text"
     }
 ]
-
-export function injectData(pageString, post) {
-    const brokenUpHTML = pageString.split("</body>");
-    return brokenUpHTML[0] + 
-        `<p>const ${post}</p></body>` + 
-        brokenUpHTML[1];
-}

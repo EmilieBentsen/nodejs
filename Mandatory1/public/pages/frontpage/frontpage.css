@@ -1,90 +1,65 @@
-body {
+  body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(255, 252, 252);
-    
+    background-color: rgb(251, 221, 148);
+    text-align: center;
+    margin: 0; 
   }
   
-  /* Header/logo Title */
-  .header {
-    padding: 80px;
-    text-align: center;
-    background: #5b38c4;
-    color: white;
+  footer {
+    height: 4vh;
   }
+
   main {
-    text-align: left;
-    width: 80%;
-    position: absolute; left: 170px; 
-    color: #5b38c4;
-
-  }
-  
-  /* Increase the font size of the heading */
-  .header h1 {
-    font-size: 40px;
-    color: white;
-  }
-  
-  /* Style the top navigation bar */
-  .navbar {
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  /* Style the navigation bar links */
-  .navbar a {
-    float: left;
-    display: block;
-    color: white;
     text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-  }
-  
-  /* Right-aligned link */
-  .navbar a.right {
-    float: right;
-  }
-
-  .navbar a.center {
-    float: center;
-  }
-  
-  /* Change color on hover */
-  .navbar a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .title {
-    color: #bc1a42;
-    font-size: 50px;
-    margin: 2px;
-
+    color: #e8fef3;
+    min-height: calc(100vh - 45vh);
+    width: 100%;
     
-  }
-  .description h1 {
-    color: red;
-    font-size: 20px;
-    padding: 10px;
-    
-  }
-  .content{
-    padding: 10px;
   }
 
   #post{
-    width: 90%;
-    padding: 10px 110px;
-    color: #030303;
+    text-align: center;
+    
   }
 
-  #inputSubject  {
-    width: 100%;
+  #remember {
+    height: 20px;
+  }
+
+  #username {
+    width: 40%;
     height: 50px;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  #password {
+    width: 40%;
+    height: 50px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+
+  #inputSubject  {
+    width: 60%;
+    height: 50px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: none;
     border-radius: 4px;
     background-color: #f8f8f8;
     font-size: 16px;
@@ -94,11 +69,11 @@ body {
   }
 
   #inputTitle {
-    width: 100%;
+    width: 60%;
     height: 50px;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: none;
     border-radius: 4px;
     background-color: #f8f8f8;
     font-size: 16px;
@@ -108,11 +83,11 @@ body {
   }
 
   #input {
-    width: 100%;
+    width: 60%;
     height: 150px;
     padding: 12px 20px;
     box-sizing: border-box;
-    border: 2px solid #ccc;
+    border: none;
     border-radius: 4px;
     background-color: #f8f8f8;
     font-size: 16px;
@@ -122,13 +97,13 @@ body {
   }
 
   #label {
-    color: #5b38c4;
+    color: #e8fef3;
     font-size: 20px;
     height: 200px;
   }
 
-  #submit {
-    background-color: #4CAF50; /* Green */
+  button {
+    background-color: #60eab0; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -137,5 +112,6 @@ body {
     display: inline-block;
     font-size: 16px;
   }
+
 
 

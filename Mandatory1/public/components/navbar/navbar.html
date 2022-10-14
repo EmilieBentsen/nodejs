@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="/components/navbar/navbar.css">
     %%PAGE_CSS_LINK%%
 <title>%%TAB_TITLE%%</title>
+<link rel="icon" type="image/x-icon"" href="/img/favicon.ico">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -12,21 +13,19 @@
 </head>
 <body>
     <div class="header">
-        <h1>My Website</h1>
-        <p>A website created by me!</p>
+        <h1>Node js Mandatory 1<a href="/"><img src="/img/logo.png" width=5% height="5%"></a></h1>
+        <p>What I've learned so far</p>
+        
       </div>
-      
       <div class="navbar" id="navbar">
-        <a href="/">LOGO</a>
-        <a href="/login">Login</a>
-        <a href="/signup">Sign Up!</a>
+        <a href="/logout">%%LOGOUT%%</a>
     </div>
     <script src="/components/navbar/navbar.js"></script>
     <main>
-            <div id="post">
+            <div id="post" style="text-align: center; margin-left: auto; margin-right: auto; width: 80em;">
                 <h2 id="subject">%%SUBJECT%%</h2>
                 <h3 id="title">%%TITLE%%</h3>
-                <p id="content">%%CONTENT%%</p>
+                <p style="text-align: center;" id="content">%%CONTENT%%</p>
             </div>
 
 
