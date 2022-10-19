@@ -26,6 +26,7 @@ const loginPage = renderPage("/login/login.html", {
     subject: "",
 });
 
+
 app.get("/", (req, res) => {
     
     fs.readFile("./user/user.json", "utf8", (err, jsonString) => {
@@ -37,12 +38,14 @@ app.get("/", (req, res) => {
 
         if (user.loggedIn){
             res.send(frontpagePage);
+            console.log("logged in");
         } else {
             res.send(loginPage);
         }
       });
       
 });
+
 
 app.post('/', (req, res) => {
     const { message } = req.body;
@@ -60,6 +63,7 @@ app.post('/', (req, res) => {
 
     res.redirect("/");
 });
+
 
 app.get("/logout", (req, res) =>{
     const userTrue = {
