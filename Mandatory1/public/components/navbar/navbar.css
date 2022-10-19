@@ -1,15 +1,16 @@
+
 /* Header/logo Title */
 .header {
   padding: 30px;
   text-align: center;
-  background: #4ecf93;
+  background: #7BA9A9;
   color: white;
 }
 
 /* Style the top navigation bar */
 .navbar {
   overflow: hidden;
-  background-color: rgb(255, 205, 205);
+  background-color: #3A595C;
 }
 /* Style the navigation bar links */
 .navbar a {
@@ -29,6 +30,6 @@
 }
 /* Change color on hover */
 .navbar a:hover {
-  background-color: rgb(245, 241, 241);
-  color: rgb(255, 205, 205);
+  background-color: rgb(255, 255, 255);
+  color: #3A595C;
 }

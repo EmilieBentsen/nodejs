@@ -1,8 +1,8 @@
   body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(251, 221, 148);
+    background-color: #192E2F;
     text-align: center;
-    margin: 0; 
+    margin: 0;
   }
   
   footer {
@@ -14,11 +14,12 @@
     color: #e8fef3;
     min-height: calc(100vh - 45vh);
     width: 100%;
-    
+
   }
 
   #post{
     text-align: center;
+
     
   }
 
@@ -112,6 +113,19 @@
     display: inline-block;
     font-size: 16px;
   }
+
+  img {
+    max-width: 800px;
+    max-height: 800px;
+}
+
+h3 {
+  margin-top: 60px;
+}
+
+#copyright-year {
+  color: white;
+}
 
 
 

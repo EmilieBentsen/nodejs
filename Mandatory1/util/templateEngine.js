@@ -14,22 +14,6 @@ export function renderPage(path, options = {}) {
         .replace("%%CONTENT%%", options.content)
         .replace("%%TITLE%%", options.title)
         .replace("%%SUBJECT%%", options.subject)
-        .replace("%%LOGOUT%%", options.logout)
-
-
-
-        + page
-            
+        + page            
         + footerComponent;
 }
-
-export const content = [
-    {
-        title: "Dette er den første titel",
-        text: "Dette er den første text"
-    },
-    {
-        title: "Dette er den anden titel",
-        text: "Dette er den anden text"
-    }
-]

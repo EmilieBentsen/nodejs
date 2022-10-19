@@ -1,8 +1,10 @@
 import express from "express";
 import { renderPage } from "./util/templateEngine.js";
 import fs from "fs";
+import apiRouter from "./routers/apiRouter.js";
 
 const app = express();
+app.use(apiRouter);
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -14,7 +16,6 @@ const frontpagePage = renderPage("/frontpage/frontpage.html",
     content: "",
     title: "",
     subject: "",
-    logout: ""
 });
 
 const loginPage = renderPage("/login/login.html", {
@@ -23,34 +24,24 @@ const loginPage = renderPage("/login/login.html", {
     content: "",
     title: "",
     subject: "",
-    logout: ""
 });
-
-let files = [];
-let newfile = true;
-
 
 app.get("/", (req, res) => {
     
     fs.readFile("./user/user.json", "utf8", (err, jsonString) => {
         if (err) {
           console.log("File read failed:", err);
-          return;
         }
         console.log("File data:", jsonString);
         const user = JSON.parse(jsonString);
 
         if (user.loggedIn){
             res.send(frontpagePage);
-            console.log("logged in");
         } else {
             res.send(loginPage);
         }
       });
       
-    
-
-
 });
 
 app.post('/', (req, res) => {
@@ -65,61 +56,53 @@ app.post('/', (req, res) => {
         content: message,
         subject: subject,
         title: title,
-        logout: ""
     }), (error) => {if(error){return error}});
 
-    newfile = true;
-    user.loggedIn = true;
     res.redirect("/");
 });
 
-app.get("/logout", (req, res) => {
-    const userFalse = {
+app.get("/logout", (req, res) =>{
+    const userTrue = {
         "username": "Admin",
         "password": "1234",
         "loggedIn": false
     }
-    const jsonString = JSON.stringify(userFalse)
+    const jsonString = JSON.stringify(userTrue)
     fs.writeFile('./user/user.json', jsonString, err => {
-    if (err) {
-        console.log('Error writing file', err)
-    } else {
-        console.log('Successfully wrote file')
-        res.redirect("/");
-    }
-    })
-    
-
-
-
+        if (err) {
+            console.log('Error writing file', err)
+        } else {
+            console.log('Successfully wrote file /login')
+        }
+    });
+    res.redirect("/");
 });
+
 
 app.post("/login", (req, res) =>{
     const { username } = req.body;
     const { password } = req.body;
 
-    const userTrue = {
-        "username": "Admin",
-        "password": "1234",
-        "loggedIn": true
-    }
-
     fs.readFile("./user/user.json", "utf8", (err, jsonString) => {
         if (err) {
           console.log("File read failed:", err);
-          return;
         }
         console.log("File data:", jsonString);
         const user = JSON.parse(jsonString);
 
         if(username === user.username && password === user.password){
 
-            const jsonString = JSON.stringify(userTrue)
+            const userTrue = {
+                "username": "Admin",
+                "password": "1234",
+                "loggedIn": true
+            }
+            const jsonString = JSON.stringify(userTrue);
             fs.writeFile('./user/user.json', jsonString, err => {
             if (err) {
-                console.log('Error writing file', err)
+                console.log('Error writing file', err);
             } else {
-                console.log('Successfully wrote file')
+                console.log('Successfully wrote file /login');
             }
             })
     
@@ -129,26 +112,6 @@ app.post("/login", (req, res) =>{
         }
         
       });
-
-
-
-});
-
-app.get("/api", (req, res) => {
-
-    if(newfile){
-        const filesupdated = [];
-        const dir = './public/pages/contribute'
-        const filesDir = fs.readdirSync(dir)
-    
-        for (let file of filesDir) {
-            const jsonFile = file;
-            filesupdated.push(jsonFile);
-        } 
-        files = filesupdated;
-        newfile = false;
-    }
-    res.json(files);
 
 });
 

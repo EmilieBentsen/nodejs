@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/components/navbar/navbar.css">
+    <link rel="stylesheet" href="/pages/frontpage/frontpage.css">
+<title>Page 3 </title>
+<link rel="icon" type="image/x-icon"" href="/img/favicon.ico">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+</style>
+</head>
+<body>
+    <div class="header">
+        <h1>Node.js mandatory 1<a href="/"><img src="/img/logo2.png" width=5% height="5%"></a></h1>
+        <p>What I've learned so far</p>
+        
+      </div>
+      <div class="navbar" id="navbar">
+        <a style="float: right;" href="/">MAKE A POST</a>
+    </div>
+    <script src="/components/navbar/navbar.js"></script>
+    <main>
+            <div id="post" style="text-align: left; margin-left: auto; margin-right: auto; margin-top: 100px; width: 80em;">
+                <h2 id="subject">Page 3</h2>
+                <h3 id="title">Package.json</h3>
+                <p id="content">Dependencies are specified in a simple object that maps a package name to a version range. The version range is a string which has one or more space-separated descriptors. Dependencies can also be identified with a tarball or git URL.
+
+                    The "scripts" property of your package.json file supports a number of built-in scripts and their preset life cycle events as well as arbitrary scripts. These all can be executed by running: <br><br> $ npm run-script <stage> <br><br> or <br><br> $ npm run <stage> <br><br>
+                     Scripts from dependencies can be run with npm explore <pkg> -- npm run <stage>.<br><br>
+                <img src="/img/package.png" style="size: 20%;"></p>
+                <h3 id="title">Fetch</h3>
+                <p id="content"><img src="/img/fetch.png" style="size: 20%;"> <br><br> The global fetch() method starts the process of fetching a resource from the network, returning a promise which is fulfilled once the response is available.</p>
+                <h3 id="title">CSS</h3>
+                <p id="content">Advantages internal css: Since you’ll only add the code within the same HTML file, you don’t need to upload multiple files. Disadvantages of Internal CSS: Adding the code to the HTML document can increase the page’s size and loading time.<br><br>
+                    Advantages of External CSS: Since the CSS code is in a separate document, your HTML files will have a cleaner structure and are smaller in size. You can use the same .css file for multiple pages.
+                    Disadvantages of External CSS: Your pages may not be rendered correctly until the external CSS is loaded. Uploading or linking to multiple CSS files can increase your site’s download time.<br><br>
+                    
+                    
+                    Advantages of Inline CSS: You can easily and quickly insert CSS rules to an HTML page. That’s why this method is useful for testing or previewing the changes, and performing quick-fixes to your website. You don’t need to create and upload a separate document as in the external style.
+                    Disadvantages of Inline CSS: Adding CSS rules to every HTML element is time-consuming and makes your HTML structure messy. Styling multiple elements can affect your page’s size and download time.
+                    </p>
+                <h3 id="title">Environment variable</h3>
+                <p id="content"><img src="/img/environmentvariable2.png" style="size: 20%;"></p>
+                <p id="content"><img src="/img/environment-variable.png" style="size: 20%;"><br><br>The process core module of Node.js provides the env property which hosts all the environment variables that were set at the moment the process was started.
+                    
+                </p>
+                <h3 id="title">cross-env</h3>
+                <p id="content">Run scripts that set and use environment variables across platforms.
+                    cross-env makes it so you can have a single command without worrying about setting or using the environment variable properly for the platform. </p>
+                <h3 id="title">Client side redirect</h3>
+                <p id="content"><img src="/img/c-redirect.png" style="size: 20%;"><img src="/img/c-redirect2.png" style="size: 20%;"></p>
+                <h3 id="title">Server side redirect</h3>
+                <p id="content"><img src="/img/s-redirect.png" style="size: 20%;"></p>
+<div id="post">
+    <img src="/img/node-js.jpg" style="size: 20%;">
+</div>
+
+<script src="/pages/template/template.js"></script></main>
+<footer>
+    <p id="copyright-year"></p>
+</footer>
+<script src="/components/footer/footer.js"></script>
+</body>
+</html>

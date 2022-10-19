@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/components/navbar/navbar.css">
+    <link rel="stylesheet" href="/pages/frontpage/frontpage.css">
+<title>Page 2 </title>
+<link rel="icon" type="image/x-icon"" href="/img/favicon.ico">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+</style>
+</head>
+<body>
+    <div class="header">
+        <h1>Node.js mandatory 1<a href="/"><img src="/img/logo2.png" width=5% height="5%"></a></h1>
+        <p>What I've learned so far</p>
+        
+      </div>
+      <div class="navbar" id="navbar">
+        <a style="float: right;" href="/">MAKE A POST</a>
+    </div>
+    <script src="/components/navbar/navbar.js"></script>
+    <main>
+            <div id="post" style="text-align: left; margin-left: auto; margin-right: auto; margin-top: 100px; width: 80em;">
+                <h2 id="subject">Page 2</h2>
+                <h3 id="title">Different call back functions</h3>
+                <p id="content"><img src="/img/node4.png" style="size: 20%;"><br><br>A callback is a function passed as an argument to another function
+
+                    This technique allows a function to call another function
+                    
+                    A callback function can run after another function has finished</p>
+                <h3 id="title">How to set up a server instance with Express</h3>
+                <p id="content"><img src="/img/node5.png" style="size: 20%;"><br><br>
+                    According to the official Express documentation, Express is a fast, un-opinionated, minimalist web framework for Node.js. Express is one of the most popular frameworks for Node.js
+                </p>
+                <h3 id="title">Send data with GET requests over HTTP</h3>
+                <p id="content">GET is an HTTP method for requesting data from the server. Requests using the HTTP GET method should only fetch data, cannot enclose data in the body of a GET message, and should not have any other effect on data on the server.
+                    HTTP GET requests cannot have a message body. But you still can send data to the server using the URL parameters. In this case, you are limited to the maximum size of the URL, which is about 2000 characters (depends on the browser). The HTTP GET method is defined as idempotent, which means that multiple identical GET requests should have the same effect as a single request.
+                    </p>
+                <h3 id="title">Example of how to send data with Get in express</h3>
+                <p id="content"><img src="/img/node6.png" style="size: 20%;"><br><br>Here is an example of how to send data with req.params, it can also be done with req.query. 154
+
+
+                    req.query will return a JS object after the query string is parsed.
+                    
+                    /user?name=tom&age=55 - req.query would yield {name:"tom", age: "55"}
+                    
+                    req.params will return parameters in the matched route. If your route is /user/:id and you make a request to /user/5 - req.params would yield {id: "5"}</p>
+                <h3 id="title">loop methods</h3>
+                <p id="content"><img src="/img/loops.png" style="size: 20%;"><br><br>Map, reduce, and filter are all array methods in JavaScript. Each one will iterate over an array and perform a transformation or computation. Each will return a new array based on the result of the function.</p>
+                <h3 id="title">Common js modules</h3>
+                <p id="content"><img src="/img/common-js.png" style="size: 20%;"><br><br>A standard for structuring and organizing JavaScript code. A module is a bit of code encapsulated in a file, and exported to another file.</p>
+                <h3 id="title">ESModules</h3>
+                <p id="content"><img src="/img/import.png" style="size: 20%;"><img src="/img/export.png" style="size: 20%;"><br><br>An ES6 module is a file containing JS code. There’s no special module keyword; a module mostly reads just like a script. There are two differences.
+
+                    ES6 modules are automatically strict-mode code, even if you don’t write "use strict"; in them.
+                    
+                    You can use import and export in modules. Everything declared inside a module is local to the module, by default. If you want something declared in a module to be public, so that other modules can use it, you must export that feature. 
+                    You can export any top-level function, class, var, let, or const. Rather than tagging each exported feature, you can write out a single list of all the names you want to export, wrapped in curly braces:
+
+                    Example:<br><br>
+                    export {function1, function2};
+                </p>
+                <h3 id="title">Staic file</h3>
+                <p id="content"><img src="/img/static-file.png" style="size: 20%;"><br><br>To serve static files such as images, CSS files, and JavaScript files, use the express.static built-in middleware function in Express</p>
+                <h3 id="title">CRUD REST API</h3>
+                <p id="content"><img src="/img/crud1.png" style="size: 20%;"><img src="/img/crud2.png" style="size: 20%;"><br><br>CRUD is a type of mechanism that allows you to create data, read data, edit it, and delete those data. Representational State Transfer (REST) defines a set of standards for web services. An API is an interface that software programs use to communicate with each other. Therefore, a RESTful API is an API that conforms to the REST architectural style and constraints. REST systems are stateless, scalable, cacheable, and have a uniform interface. RESTful APIs most commonly utilize HTTP requests. Four of the most common HTTP methods in a REST environment are GET, POST, PUT, and DELETE, which are the methods by which a developer can create a CRUD system.</p>
+
+<div id="post">
+    <img src="/img/node-js.jpg" style="size: 20%;">
+</div>
+
+<script src="/pages/template/template.js"></script></main>
+<footer>
+    <p id="copyright-year"></p>
+</footer>
+<script src="/components/footer/footer.js"></script>
+</body>
+</html>
