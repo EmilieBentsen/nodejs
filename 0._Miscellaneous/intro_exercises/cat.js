@@ -1,3 +1,0 @@
-const cat = {
-    "name": "Tom"
-}

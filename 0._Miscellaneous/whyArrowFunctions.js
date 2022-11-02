@@ -1,22 +1,23 @@
-class Buffalo{
-    constructor(name){
+class Buffalo {
+    constructor(name) {
         this.name = name;
     }
 
-    tellName(){
-        setTimeout( function () {
+    tellName() {
+        setTimeout(function () {
             console.log(this.name);
-        }, 1000)
+        }, 1000);
     }
 
-    tellNameArrowFunction = () => {
+    tellNameArrowFunction() {
         setTimeout(() => {
             console.log(this.name);
-        }, 1000)
+        }, 1000);
     }
 
 }
 
-const buffalo = new Buffalo("Bills Buffalo");
+const buffalo = new Buffalo("Bill's Buffalo");
 buffalo.tellName();
 buffalo.tellNameArrowFunction();
+

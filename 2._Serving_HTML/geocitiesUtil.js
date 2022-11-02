@@ -1,12 +1,12 @@
 let visitorCounter = 0;
 
-export function incrementVisitorCounter (){
+export function incrementVisitorCounter() {
     visitorCounter++;
     return visitorCounter;
 }
 
-//alle filer er et modul, vi kan definere vores exports
-/*module.exports = {
+// can't use this in module type syntax.. this belongs to common js syntax
+/* module.exports = {
     incrementVisitorCounter: incrementVisitorCounter
-};*/
-
+};
+ */

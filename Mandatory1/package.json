@@ -5,7 +5,8 @@
   },
   "scripts": {
     "start-dev": "cross-env PORT=8090 nodemon app.js",
-    "start-prod": "node app.js"
+    "start-prod": "node app.js",
+    "start": "node app.js"
   },
   "devDependencies": {
     "cross-env": "^7.0.3"
