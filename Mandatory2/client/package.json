@@ -1,0 +1,25 @@
+{
+  "name": "zoo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^1.1.0",
+    "svelte": "^3.52.0",
+    "vite": "^3.2.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "concurrently": "^7.6.0",
+    "routify": "^1.2.7",
+    "sapper": "^0.29.3",
+    "svelte-navigator": "^3.2.2",
+    "svelte-routing": "^1.6.0",
+    "zxcvbn": "^4.4.2"
+  }
+}
