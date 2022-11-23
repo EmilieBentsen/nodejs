@@ -1,160 +1,79 @@
 <script>
-    import { BASE_URL } from "../../store/globals.js";
-    import { emailValidator, requiredValidator } from './validators.js'
-    import { createFieldValidator } from './validation.js'
-    import { Router, Route, Link } from "svelte-navigator";
-    import Profile from "../Profile/profile.svelte";
-    import Home from "../Home/Home.svelte";
-    import z from 'zxcvbn'
+  import { BASE_URL } from "../../store/globals.js";
+  import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
 
-    const [ validity, validate ] = createFieldValidator(requiredValidator(), emailValidator())
-
-    let passwordValid = null;
 	let email = ''
 	let password = ''
-    let result = ''
-
-    let strength = 0;
-	let validations = []
-
-	function validatePassword(e) {
-        passwordValid = false;
-		const password = e.target.value
-
-		validations = [
-			(password.length > 5),
-			(password.search(/[A-Z]/) > -1),
-			(password.search(/[0-9]/) > -1),
-			(password.search(/[&+,:;=?@#-]/) > -1)
-		]
-
-		strength = validations.reduce((acc, cur) => acc + cur )
-    
-        if(strength == 4){
-            passwordValid = true;
-            console.log(passwordValid);
-        }
-        
-        
-	}
-    
-
-
-    $: s = z(password).score > 3
-	
-
-	async function login () {
+  let n
+  
+  async function login () {
     fetch(`${$BASE_URL}/api/login`, {
-    method: 'POST', // or 'PUT'
+    method: 'POST', 
     withCredentials: true,
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({useremail: email, userpass: password}),
-  })
+    })
     .then((response) => response.json())
     .then((data) => {
-      console.log('Success:', data);
+      console.log('Success:', data)
       console.log('LoggedIn ' + data.loggedIn)
       if(data.loggedIn === 'yes'){
-        window.location.href = 'http://localhost:5174/profile';
+        window.location.href = 'http://localhost:5173/profile'
+        notifier.success('Hello! Login succesfull', 7000)
+        
       }else{
-        window.location.href = 'http://localhost:5174/login';
+        notifier.danger('User unknown, maybe you typed invalid email or password', 7000)
+
+        window.location.href = 'http://localhost:5173/login'
       }
-      
-    })
+      })
     .catch((error) => {
       console.error('Error:', error);
     });
-        
-		// const json = await res.json()
-		// result = JSON.stringify(json)
-    //     console.log(result);
-    
-		
+  
 	}
 
 </script>
+<NotificationDisplay bind:this={n}/>
 
-<h4>For admission use the turnpike.</h4>
 
-<form action="/profile" method="post">
   <div class="imgcontainer">
-    <img src="/earth.png" alt="Avatar" class="avatar" />
+    <img src="/earth.png" style="size: 10px" alt="Avatar" class="avatar" />
   </div>
-
+  <h4>Login to Klimateket</h4>
   <div class="container">
     <label for="email"><b>Email</b></label>
     <input
-        bind:value={email}
+      bind:value={email}
       id="email"
       type="email"
       placeholder="Enter Email"
       name="email"
       required
-      class:field-danger={!$validity.valid}
-      class:field-success={$validity.valid}
-        use:validate={email}
     />
-
-
 
     <label for="psw"><b>Password</b></label>
     <input
-    bind:value={password}
-    on:input={validatePassword}
+      bind:value={password}
       id="password"
       type="password"
       placeholder="Enter Password"
       name="psw"
       required
     />
-
-    <div class="strength">
-        <span class="bar bar-1" class:bar-show={strength > 0}/>
-        <span class="bar bar-2" class:bar-show={strength > 1}/>
-        <span class="bar bar-3" class:bar-show={strength > 1}/>
-        <span class="bar bar-4" class:bar-show={strength > 3}/>
-    </div>
-
-    <ul>
-        <li> {validations[0] ? '✔️' : '❌'} must be at least 5 characters</li>
-        <li> {validations[1] ? '✔️' : '❌'} must contain a capital letter</li>
-        <li> {validations[2] ? '✔️' : '❌'} must contain a number</li>
-        <li> {validations[3] ? '✔️' : '❌'} must contain one of $&+,:;=?@#-</li>
-    </ul>
-    
-    <p style={s||'color:red'}>
-        {s ? 'Strong' : 'Weak'} password
-      </p>
-
-      <button type="submit" id="loginButton" on:click={login}>Login</button>
-      <!--{#if $validity.valid && passwordValid}
-      <a href="/login" type="submit" id="loginButton" on:click={login}>Login</a>
-      {:else}
-      <a href="/login" type="submit" id="loginButton">Login</a>
-      {/if}-->
+    <button type="submit" id="loginButton" on:click={login}>Login</button>
       
-    
-        
-    
     <label>
       <input type="checkbox" checked="checked" name="remember" /> Remember me
     </label>
   </div>
-
-  <div class="container" style="background-color:#f1f1f1">
-  </div>
-</form>
-
-{#if $validity.dirty && !$validity.valid}
-<span class="validation-hint">
-INVALID - {$validity.message} {$validity.dirty}
-</span>
-{/if}
+<body></body>
 
 
+  
 
 <style>
 	
@@ -184,11 +103,13 @@ INVALID - {$validity.message} {$validity.dirty}
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    background-color: white;
+    color: black;
   }
 
   /* Set a style for all buttons */
   button {
-    background-color: #04aa6d;
+    background-color: #646cff;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -210,7 +131,7 @@ INVALID - {$validity.message} {$validity.dirty}
 
   /* Avatar image */
   img.avatar {
-    width: 40%;
+    width: 20%;
     border-radius: 50%;
   }
 

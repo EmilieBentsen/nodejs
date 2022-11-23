@@ -1,2 +1,4 @@
-<h1>Welcome to KEA zoo.</h1>
-<h3>Don't feed the animals. They will go crazy.</h3>
+<h1> Velkommen til Klimateket.</h1>
+<body>
+    
+</body>

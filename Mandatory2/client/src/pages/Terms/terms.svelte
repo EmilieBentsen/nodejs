@@ -9,10 +9,7 @@
 	
     
 </script>
-<h1 >Profile page</h1>
-<button on:click={() => { notifier.info('Edit your profile info!', 7000) }}>Profile info</button>
+<h1 >Terms & Privacy</h1>
+<button on:click={() => { notifier.info('Read about our terms and privacy!', 7000) }}>Terms & Privacy</button>
 <NotificationDisplay bind:this={n}/>
 <body></body>
-
-
-
