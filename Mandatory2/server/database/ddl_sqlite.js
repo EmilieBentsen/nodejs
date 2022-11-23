@@ -24,7 +24,7 @@ const newHashedPassword2 = await bcrypt.hash("SaveThePlanet1989&", salt2)
 
 // seed the database
 if (isInDeleteMode) {
-    db.run(`INSERT INTO users (email, password) VALUES (?,?);`, ["emilie.bentsen@yahoo.com", newHashedPassword1])
+    db.run(`INSERT INTO users (email, password) VALUES (?,?);`, ["klimaLine@yahoo.com", newHashedPassword1])
     db.run(`INSERT INTO users (email, password) VALUES (?,?);`, ["anne@grønfremtid.com", newHashedPassword2])
 
 }
